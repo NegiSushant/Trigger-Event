@@ -21,7 +21,14 @@ async function main() {
       topic: TOPIC_NAME,
       messages: pendingRows.map((r) => ({
         value: r.zapRunId,
-      } )),
+      })),
+    });
+    await client.zapRunOutbox.deleteMany({
+      where: {
+        id: {
+          in: pendingRows.map((x) => x.id),
+        },
+      },
     });
   }
 }
