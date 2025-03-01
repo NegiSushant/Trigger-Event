@@ -20,6 +20,7 @@ async function main() {
         offset: message.offset,
         value: message.value?.toString(),
       });
+      await new Promise((r) => setTimeout(r, 1000));
     },
   });
 }
